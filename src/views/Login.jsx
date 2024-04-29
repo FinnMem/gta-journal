@@ -83,7 +83,7 @@ export default function Login() {
             disabled={isLoading}
           />
           <small id="username-help">
-            Логин в формате [ТЕГ] Никнейм (как в ЖА)
+            Логин в формате [ТЕГ] Никнейм или Никнейм [ТЕГ] (как в ЖА)
           </small>
         </div>
         <div className="flex flex-column gap-2 mt-2">
@@ -106,8 +106,9 @@ export default function Login() {
           className="mt-4"
           label="Войти"
           disabled={
-            !loginInfo.password.length ||
-            !loginInfo.login.match(/\[.+\] [A-Z][a-z]+_[A-Z][A-Za-z]+/g)
+          !loginInfo.password.length ||
+          (!loginInfo.login.match(/\[.+\] [A-Z][a-z]+_[A-Z][A-Za-z]+/g) &&
+          !loginInfo.login.match(/[A-Z][a-z]+_[A-Z][A-Za-z]+ \[.+\]/g))
           }
         />
       </div>
